@@ -1,0 +1,81 @@
+/**
+ * Gradle build
+ */
+
+plugins {
+    id 'java'
+    id 'eclipse'
+}
+
+// Because IIQ 7.1 can run on Java 7/8, we compile for 7...
+sourceCompatibility = '1.7'
+targetCompatibility = '1.7'
+
+version = '0.0.1'
+
+/**
+ * For dependencies, we need to include both the contents of the identityiq.war
+ * (both classes and libraries) as well as any local libraries provided directly
+ * by the plug-in itself.
+ */
+
+dependencies {
+	compile fileTree(dir: 'lib', include: ['*.jar'])
+    compile files(iiqHome + '/WEB-INF/classes')
+    compile fileTree(dir: iiqHome + '/WEB-INF/lib', include: ['*.jar'])
+}
+
+/**
+ * 
+ */
+
+task plugin {
+    group 'IdentityIQ'
+    description 'Packages up the plugin for distribution'
+    dependsOn 'packagePlugin'
+}
+
+task assemblePlugin (type: Copy) {
+    group 'IdentityIQ'
+    description 'Assemble all files in preparation for packaging for distribution'
+    dependsOn 'jar'
+    
+    from('src/main/plugin')
+    
+    from('src/main/db') {
+        into 'db'
+    }
+    
+    from('src/main/import') {
+        into 'import'
+    }
+    
+    from('src/main/ui') {
+        into 'ui'
+    }
+    
+    from('lib') {
+        into 'lib'
+    }
+    
+    from('build/libs') {
+        into 'lib'
+    }
+    
+    into 'build/tmp/plugin'
+}
+
+task packagePlugin (type: Zip) {
+    group 'IdentityIQ'
+    description 'Builds a ZIP containing all required plugin files'
+    dependsOn 'assemblePlugin'
+    
+    archiveName = project.name + '-' + project.version + '.zip'
+    destinationDir = file('build/plugin')
+    from 'build/tmp/plugin'
+}
+
+/**
+ * END
+ */
+ 

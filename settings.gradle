@@ -1,0 +1,9 @@
+/**
+ * Project proparties for iiqnanny
+ */
+
+rootProject.name='identityiq-plugin-starter'
+
+/**
+ * END
+ */

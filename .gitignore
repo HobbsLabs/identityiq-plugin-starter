@@ -1,0 +1,15 @@
+#
+# .gitignore for iiqnanny
+#
+
+/.gradle/
+/.settings/
+/bin/
+/build/
+/identityiq/
+/.classpath
+/.project
+
+#
+# END
+#

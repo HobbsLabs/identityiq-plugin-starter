@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE Plugin PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<Plugin certificationLevel="None" displayName="Plugin Display Name" minSystemVersion="7.1" name="PluginName" version="0.1">
+  <Attributes>
+    <Map>
+      <entry key="minUpgradableVersion" value="1.0"/>
+      <entry key="fullPage">
+        <value>
+          <FullPage title="Plugin Display Name"/>
+        </value>
+      </entry>
+      <entry key="restResources">
+        <value>
+          <List/>
+        </value>
+      </entry>
+      <entry key="serviceExecutors">
+        <value>
+          <List/>
+        </value>
+      </entry>
+      <entry key="settings">
+        <value>
+          <List>
+            <Setting dataType="boolean" helpText="This is a boolean parameter" label="booleanParam" name="booleanParam" defaultValue="true"/>
+            <Setting dataType="string" helpText="Thisis a String parameter" label="stringParam" name="stringParam" defaultValue="Default String Value"/>
+            <Setting dataType="int" helpText="This is an int parameter" label="intParam" name="intParam" defaultValue="42"/>
+          </List>
+        </value>
+      </entry>
+    </Map>
+  </Attributes>
+</Plugin>
